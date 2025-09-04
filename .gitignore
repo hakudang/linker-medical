@@ -1,0 +1,37 @@
+# ---- System / Tools
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# ---- Node / Composer
+node_modules/
+vendor/
+composer.lock
+
+# ---- Secrets / Builds / Dumps
+.env
+*.zip
+*.tar.gz
+*.sql
+
+# ---- WordPress core (nếu cần thêm, giữ cũng không hại)
+wp-admin/
+wp-includes/
+license.txt
+readme.html
+
+# ---- ALLOWLIST: mặc định ignore tất cả ở ROOT,
+# chỉ mở lại .gitignore và theme arkhe_child
+/*
+!.gitignore
+!/wp-content/
+/wp-content/*
+!/wp-content/themes/
+/wp-content/themes/*
+!/wp-content/themes/arkhe_child/
+!/wp-content/themes/arkhe_child/**
+!/README.md
