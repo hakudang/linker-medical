@@ -1,0 +1,454 @@
+/* ===========
+   Medical Linker – Page-wide styles (Arkhe)
+   Scope: add a Group block wrapping page content with class "medical-page"
+   =========== */
+.medical-page {
+  --ml-accent: #0ea5e9;
+  /* accent (button, links) */
+  --ml-accent-600: #0284c7;
+  /* hover */
+  --ml-bg-soft: #f7f7f7;
+  /* section bg */
+  --ml-text: #0f172a;
+  /* body text */
+  --ml-muted: #64748b;
+  /* secondary text */
+  --ml-border: #e5e7eb;
+  /* borders/cards */
+}
+
+
+/* Kill all outer gaps between blocks (an toàn toàn trang) */
+.medical-page {
+  --wp--style--block-gap: 0;
+}
+
+.medical-page .ark-block-section {
+  margin: 0 !important;
+}
+
+/* Kill gap giữa Cover và Slider trong HERO */
+.medical-page #hero .ark-block-section__bodyInner.ark-keep-mt>*+* {
+  margin-top: 0 !important;
+}
+
+.medical-page #hero .wp-block-cover {
+  margin-bottom: 0 !important;
+}
+
+.medical-page #hero .ark-block-slider {
+  margin-top: 0 !important;
+}
+
+/* (phòng trường hợp Gutenberg chèn block-gap) */
+.medical-page #hero .is-layout-constrained>*+*,
+.medical-page #hero .is-layout-flow>*+* {
+  margin-block-start: 0 !important;
+}
+
+
+/* ===========
+   Section hero
+   =========== */
+
+/* ===== 50/50 viewport height for Hero + Slider (trừ header) ===== */
+
+/* Khai báo chiều cao header (điều chỉnh nếu khác) */
+:root {
+  --header-h: 80px;
+}
+
+@media (max-width:1024px) {
+  :root {
+    --header-h: 64px;
+  }
+}
+
+body.admin-bar {
+  --adminbar-h: 32px;
+}
+
+@media (max-width:782px) {
+  body.admin-bar {
+    --adminbar-h: 46px;
+  }
+}
+
+/* Tính chiều cao khả dụng & một nửa */
+.medical-page {
+  --stack-h: calc(100vh - var(--header-h) - var(--adminbar-h, 0px));
+  --half-h: calc(var(--stack-h) / 2);
+}
+
+/* Xóa padding wrapper section để không đội cao */
+.medical-page #hero.ark-block-section {
+  margin: 0;
+}
+
+.medical-page #hero .ark-block-section__body {
+  padding: 0 !important;
+}
+
+/* HERO Cover = 50% (box-sizing để padding tính trong height) */
+.medical-page #hero .wp-block-cover {
+  display: grid;
+  place-items: center;
+  height: var(--half-h) !important;
+  min-height: 0 !important;
+  box-sizing: border-box;
+  padding-block: clamp(16px, 6vh, 48px);
+  /* top = bottom, nằm trong height */
+  margin: 0;
+}
+
+.medical-page #hero h1,
+.medical-page #hero p,
+.medical-page #hero .wp-block-buttons {
+  margin: 0;
+}
+
+/* Media Slider = 50% */
+.medical-page .wp-block-arkhe-blocks-media-slider {
+  height: var(--half-h) !important;
+  margin-top: 0 !important;
+}
+
+/* Đảm bảo toàn bộ cấu trúc bên trong slider cao 100% và ảnh fill */
+.medical-page .wp-block-arkhe-blocks-media-slider>* {
+  height: 100%;
+}
+
+.medical-page .wp-block-arkhe-blocks-media-slider [class*="slides"],
+.medical-page .wp-block-arkhe-blocks-media-slider [class*="slide"] {
+  height: 100%;
+}
+
+.medical-page .wp-block-arkhe-blocks-media-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+
+  .medical-page #hero .wp-block-cover,
+  .medical-page .wp-block-arkhe-blocks-media-slider {
+    height: auto !important;
+    min-height: 50vh;
+  }
+}
+
+
+/* ===========
+   Các section khác
+   =========== */
+
+/* Buttons (Gutenberg) */
+.medical-page .wp-block-button__link {
+  background: var(--ml-accent) !important;
+  border: 1px solid var(--ml-accent) !important;
+  padding: .8rem 1.25rem;
+  border-radius: 2px;
+  transition: .2s ease;
+}
+
+.medical-page .wp-block-button__link:hover {
+  background: var(--ml-accent-600);
+  border-color: var(--ml-accent-600);
+}
+
+.medical-page .wp-block-button.is-style-outline .wp-block-button__link{ /* Outline: mặc định viền xanh + chữ xanh, nền trong suốt */
+  background: transparent !important;                 /* ghi đè fill */
+  color: var(--ml-accent);
+  border: 1px solid var(--ml-accent) !important;      /* có độ dày + màu */
+  transition: .2s ease;
+}
+
+.medical-page .wp-block-button.is-style-outline .wp-block-button__link:hover{ /* Hover: nền xanh, chữ trắng */
+  background: var(--ml-accent) !important;
+  color: #fff !important;
+  border-color: var(--ml-accent) !important;
+}
+
+/* Icon boxes (3 cột vấn đề) */
+.medical-page .icon-boxes .ark-block-icon,
+.medical-page .icon-boxes .icon-box img {
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin: 0 auto 8px;
+  opacity: .95;
+}
+
+.medical-page .icon-boxes .icon-box {
+  text-align: center;
+  padding: 12px 8px;
+}
+
+.medical-page .icon-boxes p {
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--ml-muted);
+}
+
+/* Solution (media-text) */
+.medical-page .section--solution .wp-block-media-text {
+  gap: 2rem;
+}
+
+.medical-page .section--solution li {
+  margin: .15rem 0;
+}
+
+/* Pricing */
+.medical-page .section--pricing .pricing-card,
+.medical-page .arkb-boxLink {
+  background: #fff;
+  border: 1px solid var(--ml-border);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .06);
+}
+
+.medical-page .section--pricing .pricing-card {
+  padding: 24px;
+}
+
+.medical-page .section--pricing h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.medical-page .arkb-boxLink .arkb-boxLink__title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Timeline (Arkhe Step) – làm rõ số bước */
+.medical-page .ark-block-step__number {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: var(--ml-bg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.medical-page .ark-block-step__head {
+  align-items: center;
+  gap: .6rem;
+}
+
+.medical-page .ark-block-step__item {
+  border-left: 3px solid var(--ml-bg-soft);
+  padding-left: 12px;
+}
+
+/* Hospitals (logo grid) */
+.medical-page .logos-grid img {
+  max-height: 56px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  filter: grayscale(100%);
+  opacity: .92;
+}
+
+/* FAQ (Arkhe FAQ) */
+.medical-page .ark-block-faq__q {
+  font-weight: 700;
+}
+
+.medical-page .ark-block-faq__a {
+  color: var(--ml-muted);
+}
+
+/* Section nền xám mềm */
+/* .medical-page .ark-block-section__color[style*="background-color:#f7f7f7"] {
+  opacity: 1 !important;
+} */
+
+/* Links tiêu chuẩn */
+.medical-page a {
+  color: var(--ml-accent);
+}
+
+.medical-page a:hover {
+  color: var(--ml-accent-600);
+}
+
+
+/* ===========
+   Contact Form 7 – Medical style
+   =========== */
+.medical-page #contact .wpcf7 form {
+  display: grid;
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* label hàng đầu (nếu bạn dùng label) */
+.medical-page #contact .wpcf7 form label {
+  font-weight: 600;
+  margin-bottom: .25rem;
+  display: block;
+}
+
+/* inputs */
+.medical-page #contact .wpcf7 input[type="text"],
+.medical-page #contact .wpcf7 input[type="email"],
+.medical-page #contact .wpcf7 input[type="tel"],
+.medical-page #contact .wpcf7 input[type="date"],
+.medical-page #contact .wpcf7 select,
+.medical-page #contact .wpcf7 textarea {
+  width: 100%;
+  padding: .8rem 1rem;
+  border: 1px solid var(--ml-border);
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.medical-page #contact .wpcf7 textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* focus & invalid */
+.medical-page #contact .wpcf7 .wpcf7-form-control:focus {
+  outline: none;
+  border-color: var(--ml-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ml-accent) 20%, transparent);
+}
+
+.medical-page #contact .wpcf7-not-valid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px color-mix(in oklab, #ef4444 20%, transparent);
+}
+
+/* tip lỗi & response box */
+.medical-page #contact .wpcf7-not-valid-tip {
+  color: #b91c1c;
+  font-size: .92rem;
+  margin-top: .25rem;
+}
+
+.medical-page #contact .wpcf7-response-output {
+  margin-top: 8px;
+  border-radius: 6px;
+  border-width: 1px;
+}
+
+.medical-page #contact .wpcf7 form.sent .wpcf7-response-output {
+  border-color: #16a34a;
+  background: #f0fdf4;
+  color: #14532d;
+}
+
+.medical-page #contact .wpcf7 form.invalid .wpcf7-response-output,
+.medical-page #contact .wpcf7 form.failed .wpcf7-response-output {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+/* submit button */
+
+.medical-page #contact .wpcf7 input[type="submit"] {
+  background: var(--ml-accent) !important;
+  /* Màu nền */
+  border: 1px solid var(--ml-accent) !important;
+  /* Đường viền */
+  padding: .8rem 1.25rem;
+  /* Khoảng cách trong */
+  border-radius: 2px;
+  /* Bo góc */
+  transition: .2s ease;
+  /* Hiệu ứng chuyển động */
+  color: #fff;
+  /* Màu chữ trắng */
+  display: block;
+  /* Đảm bảo nút submit là block element */
+  margin: 0 auto;
+  /* Căn giữa theo chiều ngang */
+}
+
+.medical-page #contact .wpcf7 input[type="submit"]:hover {
+  /* Hover effect for submit button */
+  background: var(--ml-accent-600) !important;
+  /* Màu nền khi hover */
+  border-color: var(--ml-accent-600) !important;
+  /* Màu viền khi hover */
+}
+
+.medical-page #contact .wpcf7 input[type="submit"].is-style-outline {
+  /* Outline style for submit button (if needed) */
+  background: transparent;
+  /* Nền trong suốt */
+  color: var(--ml-accent);
+  /* Màu chữ */
+  border-color: var(--ml-accent);
+  /* Màu viền */
+}
+
+.medical-page #contact .wpcf7 input[type="submit"].is-style-outline:hover {
+  /* Hover effect for outline style */
+  background: var(--ml-accent) !important;
+  /* Màu nền khi hover */
+  color: #fff !important;
+  /* Màu chữ khi hover */
+}
+
+/* spinner */
+.medical-page #contact .wpcf7 .wpcf7-spinner {
+  margin-left: .5rem;
+  filter: hue-rotate(180deg) saturate(1.5);
+}
+
+/* placeholder màu dịu */
+.medical-page #contact ::placeholder {
+  color: #9aa4b2;
+}
+
+/* hàng 2 cột trên màn lớn (tên & email chẳng hạn) – nếu muốn */
+@media (min-width: 768px) {
+  .medical-page #contact .wpcf7 .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+/* Thêm đường viền cho form */
+.medical-page #contact .wpcf7 form {
+  display: grid;
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  /* Thêm đường viền */
+  border-radius: 6px;
+  /* Bo góc */
+  padding: 20px;
+  /* Khoảng cách bên trong */
+}
+
+.medical-page #contact .wpcf7 .wpcf7-form-control:focus {
+  /* Khi input có focus */
+  outline: none;
+  border-color: var(--ml-accent);
+  /* Màu viền khi focus */
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ml-accent) 20%, transparent);
+}
+
+.medical-page #contact .wpcf7-not-valid {
+  /* Khi input bị lỗi */
+  border-color: #ef4444;
+  /* Đường viền đỏ khi lỗi */
+  box-shadow: 0 0 0 3px color-mix(in oklab, #ef4444 20%, transparent);
+}

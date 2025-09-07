@@ -9,3 +9,73 @@ Text Domain: arkhe
 License: GNU General Public License
 License URI: http://www.gnu.org/licenses/gpl.html
 */
+
+
+/* Menu cho toàn Site (Arkhe) 
+*/
+
+
+/* NỀN HEADER (mọi trạng thái) */
+.l-header,
+.l-header.is-fixed,
+.l-header.is-scrolled{
+  background:#fff !important;
+}
+
+/* LINK MENU CẤP 1 (bao phủ nhiều biến thể Arkhe) */
+.l-header nav ul.menu > li > a,
+.l-header .c-gnav > li > a,
+.l-header .p-globalNav > li > a,
+.l-header .c-gnav__link{
+  color:#0f172a !important;
+  display:block; padding:.55rem .85rem; border-radius:2px;
+}
+
+/* HOVER: nền = main, chữ = text */
+.l-header nav ul.menu > li:hover > a,
+.l-header .c-gnav > li:hover > a,
+.l-header .p-globalNav > li:hover > a,
+.l-header .c-gnav__link:hover{
+  background:#0ea5e9 !important;
+  color:#fff !important;
+}
+
+/* ACTIVE/CURRENT */
+.l-header nav ul.menu > li.current-menu-item > a,
+.l-header nav ul.menu > li.current-menu-ancestor > a,
+.l-header .c-gnav__link[aria-current="page"]{
+  background:#fff !important;
+  color:#0ea5e9 !important;
+}
+
+/* Mobile drawer (tuỳ chọn) */
+@media (max-width:1024px){
+  .c-drawer, .p-drawer, .ark-drawer{ background:#fff !important; }
+  .c-drawer a{ color:#0f172a !important; }
+  .c-drawer a:hover{ background:#0ea5e9 !important; color:#0f172a !important; border-radius:8px; }
+}
+
+/* === Căn giữa dọc menu cấp 1 (Arkhe) === */
+@media (min-width:1025px){
+  /* đặt chiều cao header mong muốn */
+  :root{ --hd-h: 64px; } /* chỉnh 56/60/72 tùy site */
+
+  /* Anchor cấp 1: cao = header, canh giữa, bỏ padding dọc */
+  .l-header nav ul.menu > li > a,
+  .l-header .c-gnav > li > a,
+  .l-header .p-globalNav > li > a,
+  .l-header .c-gnav__link{
+    display: flex;
+    align-items: center;
+    height: var(--hd-h);
+    line-height: 1;
+    padding-block: 0 !important;      /* quan trọng: bỏ padding trên/dưới */
+    padding-inline: 14px;              /* giữ khoảng trái/phải */
+    border-radius: 2px;               /* nếu muốn pill */
+    box-sizing: border-box;
+  }
+
+  /* (tùy chọn) đảm bảo vùng chứa header tối thiểu = hd-h */
+  .l-header .l-header__inner{ min-height: var(--hd-h); }
+}
+
