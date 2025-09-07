@@ -71,7 +71,7 @@ License URI: http://www.gnu.org/licenses/gpl.html
     line-height: 1;
     padding-block: 0 !important;      /* quan trọng: bỏ padding trên/dưới */
     padding-inline: 14px;              /* giữ khoảng trái/phải */
-    border-radius: 2px;               /* nếu muốn pill */
+    border-radius: 0px;               /* nếu muốn pill */
     box-sizing: border-box;
   }
 

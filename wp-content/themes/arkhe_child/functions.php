@@ -51,3 +51,48 @@ add_action('wp_enqueue_scripts', function () {
     );
   }
 });
+
+/**
+ * Enqueue JS riêng cho trang medical
+ * - Chỉ nạp khi trang có block Arkhe Section (thường chỉ ở landing medical)
+ * - Hoặc trang có shortcode CF7 (nếu bạn dùng CF7 ở nhiều trang
+ *  và muốn nạp JS này ở tất cả các trang có CF7)
+ * - Hoặc nạp đúng trang /medical và /ja/medical (nếu bạn chỉ dùng CF7 ở 2 trang này)
+ * - Tệp JS này để tự set value cho trường date của Contact Form 7 (name="your-date")
+ *  + Ngày mặc định: hôm nay + 1 tháng
+ * + Không cho chọn ngày quá khứ
+ *  
+ */
+add_action('wp_enqueue_scripts', function () {
+
+  $path = ARKHE_CHILD_PATH . '/assets/js/medical.js';
+  if ( ! file_exists($path) ) return;
+
+  // Chỉ nạp ở các trang có nội dung /medical (tuỳ bạn chọn điều kiện)
+  $should_load = false;
+
+  // Cách A: nạp khi là trang có block Arkhe Section (thường chỉ ở landing medical)
+  if ( is_page() && has_block('arkhe-blocks/section') ) {
+    $should_load = true;
+  }
+
+  // Cách B (tuỳ chọn): nạp khi trang có shortcode CF7
+  if ( is_page() && isset($GLOBALS['post']) && has_shortcode($GLOBALS['post']->post_content, 'contact-form-7') ) {
+    $should_load = true;
+  }
+
+  // Cách C (tuỳ chọn): nạp đúng 2 trang VI/JA
+  // if ( is_page('medical') || strpos($_SERVER['REQUEST_URI'], '/ja/medical') !== false ) {
+  //   $should_load = true;
+  // }
+
+  if ( $should_load ) {
+    wp_enqueue_script(
+      'medical-js',
+      ARKHE_CHILD_URI . '/assets/js/medical.js',
+      [],                                  // dependencies (thường không cần jQuery)
+      filemtime($path),                    // cache-busting khi sửa file
+      true                                 // in_footer
+    );
+  }
+}, 20);

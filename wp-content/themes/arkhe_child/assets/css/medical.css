@@ -293,10 +293,34 @@ body.admin-bar {
 
 /* label hàng đầu (nếu bạn dùng label) */
 .medical-page #contact .wpcf7 form label {
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: .25rem;
   display: block;
 }
+
+/* Dấu * đỏ cho field bắt buộc (dùng thêm span.field-label) */
+.medical-page #contact .wpcf7 form label:has(.wpcf7-validates-as-required) .field-label::after,
+.medical-page #contact .wpcf7 form label:has([required]) .field-label::after,
+.medical-page #contact .wpcf7 form label:has([aria-required="true"]) .field-label::after{
+  content: " *";
+  color: #e11d48;        /* đỏ */
+  font-weight: 700;      /* cho * đậm một chút để dễ nhìn */
+  margin-left: .25rem;
+}
+
+.medical-page #contact .wpcf7 .field-label { font-weight: 400; } /* chữ thường cho nhãn */
+
+.medical-page #contact .wpcf7 .field-group:has(.wpcf7-validates-as-required) .field-label::after { /* thêm * đỏ cho mọi field-group có control required bên trong */
+  content: " *";
+  color: #e11d48;
+  font-weight: 700;
+  margin-left: .25rem;
+}
+
+/* checkbox item */
+.medical-page #contact .wpcf7 .wpcf7-list-item { margin-right: 1rem; }
+.medical-page #contact .wpcf7 .wpcf7-list-item label { font-weight: 400; }
+
 
 /* inputs */
 .medical-page #contact .wpcf7 input[type="text"],
@@ -452,3 +476,4 @@ body.admin-bar {
   /* Đường viền đỏ khi lỗi */
   box-shadow: 0 0 0 3px color-mix(in oklab, #ef4444 20%, transparent);
 }
+
