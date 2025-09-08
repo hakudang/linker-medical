@@ -1,81 +1,69 @@
-@charset "UTF-8";
-/*
-Template: arkhe
-Theme Name: Arkhe Child
-Theme URI: https://arkhe-theme.com/ja/
-Description: Arkhe用子テーマ
-Version: 1.0.0
-Text Domain: arkhe
-License: GNU General Public License
-License URI: http://www.gnu.org/licenses/gpl.html
-*/
+/* =====================
+   Menu trên PC (Desktop)
+   ===================== */
 
-
-/* Menu cho toàn Site (Arkhe) 
-*/
-
-
-/* NỀN HEADER (mọi trạng thái) */
-.l-header,
-.l-header.is-fixed,
-.l-header.is-scrolled{
-  background:#fff !important;
+/* Menu chính trên PC - chữ đen, nền trắng */
+.l-header nav ul.menu > li > a {
+  color: #0f172a !important; /* Màu chữ đen */
+  background-color: #fff !important; /* Màu nền trắng */
+  padding: 0.8rem 1rem; /* Khoảng cách của các mục menu */
+  border-radius: 4px; /* Bo góc nhẹ */
 }
 
-/* LINK MENU CẤP 1 (bao phủ nhiều biến thể Arkhe) */
-.l-header nav ul.menu > li > a,
-.l-header .c-gnav > li > a,
-.l-header .p-globalNav > li > a,
-.l-header .c-gnav__link{
-  color:#0f172a !important;
-  display:block; padding:.55rem .85rem; border-radius:2px;
+/* Khi hover trên PC - nền xanh và chữ trắng */
+.l-header nav ul.menu > li:hover > a {
+  background-color: #0ea5e9 !important; /* Nền màu khi hover */
+  color: #fff !important; /* Chữ màu trắng khi hover */
 }
 
-/* HOVER: nền = main, chữ = text */
-.l-header nav ul.menu > li:hover > a,
-.l-header .c-gnav > li:hover > a,
-.l-header .p-globalNav > li:hover > a,
-.l-header .c-gnav__link:hover{
-  background:#0ea5e9 !important;
-  color:#fff !important;
-}
-
-/* ACTIVE/CURRENT */
+/* Đảm bảo màu nền trắng và chữ xanh khi menu được chọn */
 .l-header nav ul.menu > li.current-menu-item > a,
-.l-header nav ul.menu > li.current-menu-ancestor > a,
-.l-header .c-gnav__link[aria-current="page"]{
-  background:#fff !important;
-  color:#0ea5e9 !important;
+.l-header nav ul.menu > li.current-menu-ancestor > a {
+  background-color: #fff !important;
+  color: #0ea5e9 !important;
 }
 
-/* Mobile drawer (tuỳ chọn) */
-@media (max-width:1024px){
-  .c-drawer, .p-drawer, .ark-drawer{ background:#fff !important; }
-  .c-drawer a{ color:#0f172a !important; }
-  .c-drawer a:hover{ background:#0ea5e9 !important; color:#0f172a !important; border-radius:8px; }
+/* ==========================
+   Menu Drawer trên Mobile
+   ========================== */
+
+/* Đảm bảo màu chữ đen trên các mục menu trong mobile drawer */
+.c-drawerNav__a .__mainText {
+  color: #0f172a !important;  /* Đảm bảo chữ màu đen */
 }
 
-/* === Căn giữa dọc menu cấp 1 (Arkhe) === */
-@media (min-width:1025px){
-  /* đặt chiều cao header mong muốn */
-  :root{ --hd-h: 64px; } /* chỉnh 56/60/72 tùy site */
+/* Khi hover trên Mobile Drawer - chuyển chữ thành trắng */
+.c-drawerNav__a:hover .__mainText {
+  color: #fff !important;  /* Đảm bảo chữ chuyển thành trắng khi hover */
+}
 
-  /* Anchor cấp 1: cao = header, canh giữa, bỏ padding dọc */
-  .l-header nav ul.menu > li > a,
-  .l-header .c-gnav > li > a,
-  .l-header .p-globalNav > li > a,
-  .l-header .c-gnav__link{
-    display: flex;
-    align-items: center;
-    height: var(--hd-h);
-    line-height: 1;
-    padding-block: 0 !important;      /* quan trọng: bỏ padding trên/dưới */
-    padding-inline: 14px;              /* giữ khoảng trái/phải */
-    border-radius: 0px;               /* nếu muốn pill */
-    box-sizing: border-box;
+/* ============================
+   Cải tiến cho cả PC và Mobile
+   ============================ */
+
+/* Khi hover trên menu trong cả PC và Mobile */
+.l-header nav ul.menu > li:hover > a,
+.c-drawerNav__a:hover {
+  background-color: #0ea5e9 !important; /* Nền màu khi hover */
+  color: #fff !important; /* Chữ màu trắng khi hover */
+}
+
+/* Đảm bảo chữ đen và nền trắng cho menu khi không hover */
+.l-header nav ul.menu > li > a {
+  color: #0f172a !important;
+  background-color: #fff !important;
+}
+
+/* ==========================
+   Mobile (Drawer) menu: Màu nền trắng và chữ đen
+   ========================= */
+@media (max-width: 1024px) {
+  .c-drawerNav__a .__mainText {
+    /* color: #0f172a !important;   */
+    color: #fff !important;  /* Màu chữ đen */
   }
 
-  /* (tùy chọn) đảm bảo vùng chứa header tối thiểu = hd-h */
-  .l-header .l-header__inner{ min-height: var(--hd-h); }
+  .c-drawerNav__a:hover .__mainText {
+    color: #fff !important;  /* Màu chữ trắng khi hover */
+  }
 }
-
